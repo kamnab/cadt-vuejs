@@ -61,22 +61,32 @@
 </template>
 
 
-<script>
+<script setup>
+import { onMounted } from "vue";
 import { useUsersStore } from "@/store/usersjs";
-import { mapState, mapActions } from "pinia";
+const store = useUsersStore();
 
-export default {
-  computed: {
-    ...mapState(useUsersStore, ["users", "userCount"]),
-  },
-  async mounted() {
-    //await this.fetchUsers();
-  },
-  methods: {
-    ...mapActions(useUsersStore, ["fetchUsers"]),
-    changeLocale(locale) {
-      this.$i18n.locale = locale == "en" ? "km" : "en";
-    },
-  },
+onMounted(async () => {
+  await store.fetchUsers();
+});
+
+const changeLocale = (locale) => {
+  this.$i18n.locale = locale == "en" ? "km" : "en";
 };
+
+// import { mapState, mapActions } from "pinia";
+// export default {
+//   computed: {
+//     ...mapState(useUsersStore, ["users", "userCount"]),
+//   },
+//   async mounted() {
+//     //await this.fetchUsers();
+//   },
+//   methods: {
+//     ...mapActions(useUsersStore, ["fetchUsers"]),
+
+//     ,
+
+//   },
+// };
 </script>

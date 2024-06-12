@@ -13,7 +13,8 @@
             />
             <ErrorMessage name="email" />
             <small id="emailHelp" class="form-text text-muted"
-              >We'll never share your email with anyone else. {{ data }}</small
+              >We'll never share your email with anyone else.
+              {{ useLoginStore }}</small
             >
           </div>
           <div class="form-group">
@@ -48,6 +49,7 @@ import { mapState, mapActions } from "pinia";
 
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as Yup from "yup";
+
 export default {
   computed: {
     ...mapState(useLoginStore, ["isLogin", "data"]),
